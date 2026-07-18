@@ -1,0 +1,22 @@
+{
+  "name": "openapi-vio-types",
+  "version": "1.0.0",
+  "description": "Auto-generated TypeScript types from the Vio.com Partners API OpenAPI schema",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./vio-api.d.ts"
+  },
+  "types": "./vio-api.d.ts",
+  "files": [
+    "vio-api.d.ts",
+    "vio-api.yaml"
+  ],
+  "scripts": {
+    "generate": "openapi-typescript vio-api.yaml -o vio-api.d.ts"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "typescript": "5.9.3"
+  }
+}

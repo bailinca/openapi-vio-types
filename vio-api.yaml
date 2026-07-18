@@ -1,0 +1,1759 @@
+openapi: 3.0.1
+info:
+  description: 'Docs: https://developers.vio.com/docs/category/partners-api'
+  title: Vio.com partners API.
+  version: v1.0.0
+paths:
+  /build-links:
+    post:
+      description: Build various types of links.
+      operationId: BuildLinks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildLinksRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildLinksResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /list:
+    get:
+      description: Get list of id value pairs for a given entity.
+      operationId: List
+      parameters:
+        - description: Entity of the list.
+          in: query
+          name: entity
+          required: true
+          schema:
+            type: string
+            enum:
+              - theme
+              - propertyType
+              - facility
+        - description: Language code to translate values in the list.
+          example: en
+          in: query
+          name: language
+          required: true
+          schema:
+            type: string
+            enum:
+              - ar
+              - bg
+              - ca
+              - cs
+              - cz
+              - da
+              - de
+              - en
+              - en-GB
+              - es
+              - et
+              - fi
+              - fr
+              - he
+              - hr
+              - hu
+              - id
+              - is
+              - it
+              - iw
+              - ja
+              - ko
+              - lt
+              - lv
+              - ms
+              - nl
+              - no
+              - nb
+              - nn
+              - pl
+              - pt
+              - pt-BR
+              - ro
+              - ru
+              - sk
+              - sl
+              - sr
+              - sv
+              - th
+              - tl
+              - tr
+              - uk
+              - vi
+              - zh
+              - zh-CN
+              - zh-TW
+              - zh-HK
+              - es-MX
+              - el
+              - bn
+              - fil
+              - fr-CA
+              - hi
+              - mr
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ListItem'
+                type: array
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /location-links:
+    post:
+      description: Retrieve links to the location search pages of various providers.
+      operationId: GetLocationLinks
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationLinksRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationLinksResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /nearby-places:
+    post:
+      description: Get nearby places for a given place name or place ID.
+      operationId: NearbyPlaces
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NearbyPlacesRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NearbyPlacesResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /search:
+    post:
+      description: Search for hotels and offers by various criteria.
+      operationId: Search
+      requestBody:
+        $ref: '#/components/requestBodies/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /search/poll:
+    post:
+      description: Long polling version of the /search endpoint.
+      operationId: PollSearch
+      parameters:
+        - description: The unique identifier of the long-polling session.
+          in: query
+          name: sessionId
+          schema:
+            type: string
+      requestBody:
+        $ref: '#/components/requestBodies/SearchRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PollSearchResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      tags:
+        - partners
+  /suggest:
+    get:
+      operationId: Suggest
+      parameters:
+        - description: Free text query.
+          in: query
+          name: query
+          schema:
+            type: string
+            maxLength: 256
+        - description: Language code of the query.
+          example: en
+          in: query
+          name: language
+          schema:
+            type: string
+            enum:
+              - ar
+              - bg
+              - ca
+              - cs
+              - cz
+              - da
+              - de
+              - en
+              - en-GB
+              - es
+              - et
+              - fi
+              - fr
+              - he
+              - hr
+              - hu
+              - id
+              - is
+              - it
+              - iw
+              - ja
+              - ko
+              - lt
+              - lv
+              - ms
+              - nl
+              - no
+              - nb
+              - nn
+              - pl
+              - pt
+              - pt-BR
+              - ro
+              - ru
+              - sk
+              - sl
+              - sr
+              - sv
+              - th
+              - tl
+              - tr
+              - uk
+              - vi
+              - zh
+              - zh-CN
+              - zh-TW
+              - zh-HK
+              - es-MX
+              - el
+              - bn
+              - fil
+              - fr-CA
+              - hi
+              - mr
+            default: en
+        - description: >-
+            Type of suggestions to return. This value is forwarded as an
+            objectType filter.
+
+            Example values include `place`, `hotel`, and `address`. Leave empty for all suggestions.
+          in: query
+          name: type
+          schema:
+            type: string
+        - description:
+            Maximum number of suggestions to return. Non-positive values fall
+            back to the default.
+          in: query
+          name: limit
+          schema:
+            type: integer
+            format: int64
+            default: 30
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PAPISuggestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      summary: Get suggested search results for a given query.
+      tags:
+        - partners
+security:
+  - ApiKeyAuth: []
+servers:
+  - url: https://partners.api.vio.com/v1
+components:
+  requestBodies:
+    SearchRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SearchRequest'
+      required: true
+  securitySchemes:
+    ApiKeyAuth:
+      in: header
+      name: X-Partner-Key
+      type: apiKey
+  schemas:
+    BedConfiguration:
+      properties:
+        count:
+          description: Number of beds.
+          format: int64
+          type: integer
+        description:
+          description: Description of the bed.
+          type: string
+        name:
+          description: Name of the bed.
+          type: string
+        size:
+          description: Size of the bed.
+          type: string
+        type:
+          description: Type of the bed.
+          type: string
+      required:
+        - size
+        - count
+      type: object
+    Bedroom:
+      properties:
+        bedConfigurations:
+          description: How beds are configured in the bedroom.
+          items:
+            $ref: '#/components/schemas/BedConfiguration'
+          type: array
+        description:
+          description: Bedroom description.
+          type: string
+        name:
+          description: Name of bedroom.
+          type: string
+      type: object
+    BuildLinksRequest:
+      properties:
+        homePageLinkParams:
+          $ref: '#/components/schemas/HomePageLinkParams'
+        searchPageLinkParams:
+          $ref: '#/components/schemas/SearchPageLinkParams'
+      type: object
+    BuildLinksResponse:
+      properties:
+        homePageLink:
+          description: Home page link if homePageLinkParams were provided.
+          type: string
+        searchPageLinks:
+          description: |-
+            The list of search page links if searchPageLinkParams were provided.
+            The order is the same as in the searchPageLinkParams.urls.
+          items:
+            type: string
+          type: array
+      type: object
+    CancellationPenalty:
+      properties:
+        amount:
+          description: Fixed amount of the penalty.
+          format: double
+          type: number
+        currency:
+          description: Currency of the fixed amount.
+          type: string
+        end:
+          description: Date and time when the penalty stops to apply.
+          type: string
+        nights:
+          format: int64
+          type: integer
+        percent:
+          format: double
+          type: number
+        start:
+          description: Date and time when the penalty starts to apply.
+          type: string
+      type: object
+    ErrorResponse:
+      properties:
+        message:
+          description: Error message
+          type: string
+      type: object
+    Filters:
+      properties:
+        facilities:
+          description: The list of facility ids.
+          items:
+            format: int64
+            type: integer
+          type: array
+        freeCancellation:
+          description: >-
+            Free cancellation filter. If true, only offers with free
+            cancellation will be returned.
+
+            If false, only offers without free cancellation will be returned.
+
+            Omits the filter if not set.
+          type: boolean
+        guestRating:
+          description: Minimum overall guest rating.
+          format: int64
+          maximum: 10
+          minimum: 0
+          type: integer
+        mealPlans:
+          description: >-
+            Meal plan filters. When omitted or empty, no meal-plan filter is
+            applied.
+
+            `breakfastIncluded` is not breakfast-only: it can match breakfast,
+            halfBoard, fullBoard, and allInclusive offers.
+
+            Multiple values match offers with any requested meal plan.
+          items:
+            enum:
+              - breakfastIncluded
+              - lunch
+              - dinner
+              - halfBoard
+              - fullBoard
+              - allInclusive
+            type: string
+          type: array
+        notPropertyTypes:
+          description: The list of property type ids to exclude.
+          items:
+            format: int64
+            type: integer
+          type: array
+        price:
+          $ref: '#/components/schemas/PriceFilter'
+        propertyTypes:
+          description: The list of property type ids.
+          items:
+            format: int64
+            type: integer
+          type: array
+        starRatings:
+          description: The list of star ratings.
+          example: 4,5
+          items:
+            format: int64
+            type: integer
+          type: array
+        themes:
+          description: The list of theme ids.
+          items:
+            format: int64
+            type: integer
+          type: array
+      type: object
+    GuestRating:
+      properties:
+        cleanliness:
+          format: double
+          type: number
+        dining:
+          format: double
+          type: number
+        facilities:
+          format: double
+          type: number
+        location:
+          format: double
+          type: number
+        overall:
+          format: double
+          type: number
+        pricing:
+          format: double
+          type: number
+        rooms:
+          format: double
+          type: number
+        service:
+          format: double
+          type: number
+      type: object
+    HomePageLinkParams:
+      properties:
+        label:
+          description: Arbitrary string for tracking and reporting.
+          type: string
+      type: object
+    Hotel:
+      properties:
+        anchorRate:
+          $ref: '#/components/schemas/Rate'
+        details:
+          $ref: '#/components/schemas/HotelDetails'
+        error:
+          type: string
+        id:
+          description: Hotel ID if queried by hotel IDs.
+          type: string
+        offers:
+          description: The list of hotel offers.
+          items:
+            $ref: '#/components/schemas/Offer'
+          type: array
+        requestedName:
+          description: Hotel name if queried by hotel names.
+          type: string
+        roomsConfig:
+          description: |-
+            Rooms configuration.
+            Non empty when rooms optimization is applied.
+          type: string
+      required:
+        - offers
+      type: object
+    HotelDetails:
+      properties:
+        address:
+          description: Address of the hotel.
+          type: string
+        cityName:
+          description: City name.
+          type: string
+        distanceFromCityCentre:
+          description: Distance from city center in meters.
+          format: int64
+          type: integer
+        facilities:
+          description: The list of hotel facility ids.
+          items:
+            format: int64
+            type: integer
+          type: array
+        guestRating:
+          $ref: '#/components/schemas/GuestRating'
+        images:
+          description: The list of hotel images.
+          items:
+            type: string
+          type: array
+        location:
+          $ref: '#/components/schemas/LatLon'
+        name:
+          description: Name of the hotel.
+          type: string
+        reviewCount:
+          description: Review count.
+          format: int64
+          type: integer
+        starRating:
+          description: Star rating from 0 to 5.
+          format: int64
+          type: integer
+        vioUrl:
+          description: URL of the hotel on Vio website.
+          type: string
+      required:
+        - name
+        - location
+        - address
+        - vioUrl
+      type: object
+    HotelID:
+      properties:
+        id:
+          description: Hotel ID if queried by hotel IDs.
+          type: string
+        requestedName:
+          description: Hotel name if queried by hotel names.
+          type: string
+      type: object
+    HotelNamesQuery:
+      properties:
+        city:
+          description: |-
+            City of hotels. Use this parameter to refine the search
+            if there are hotels with the same names in another city.
+          type: string
+        country:
+          description: |-
+            Country of hotels. Use this parameter to refine the search
+            if there are hotels with the same names in another country.
+          type: string
+        lat:
+          description: >-
+            Latitude in degrees. Use this parameter together with `lon` and
+            optionally `radius`
+
+            to filter hotels by geographic proximity.
+          format: double
+          type: number
+        lon:
+          description: >-
+            Longitude in degrees. Use this parameter together with `lat` and
+            optionally `radius`
+
+            to filter hotels by geographic proximity.
+          format: double
+          type: number
+        names:
+          description: The list of hotel names to query.
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        noMappingFallback:
+          description: >-
+            When set to true, disables the fallback to optional filters for name
+            mapping.
+
+            By default (false), if hard filters (country/city) fail to match, the system
+
+            will retry with optional filters for backward compatibility.
+          type: boolean
+        radius:
+          description: >-
+            Radius in meters for geographic filtering. If not specified,
+            defaults to 50000 meters (50km).
+
+            Only used when lat and lon are provided.
+          format: int64
+          type: integer
+      required:
+        - names
+      type: object
+    LatLon:
+      properties:
+        lat:
+          description: Latitude in degrees
+          format: double
+          type: number
+        lon:
+          description: Longitude in degrees
+          format: double
+          type: number
+        radius:
+          description: Radius of the geolocation in meters
+          format: int64
+          type: integer
+      type: object
+    Layout:
+      properties:
+        area:
+          description: Surface area of this room in square meters.
+          format: double
+          type: number
+        bathroomCount:
+          description: Number of bathrooms.
+          format: int64
+          type: integer
+        bedroomCount:
+          description: Number of bedrooms.
+          format: int64
+          type: integer
+        bedrooms:
+          description: Available bedroom configurations.
+          items:
+            $ref: '#/components/schemas/Bedroom'
+          type: array
+      type: object
+    ListItem:
+      properties:
+        id:
+          description: List item ID.
+          format: int64
+          type: integer
+        value:
+          description: Translated list item value.
+          type: string
+      type: object
+    LocationLinksRequest:
+      properties:
+        anonymousId:
+          description: Unique ID identifying users.
+          type: string
+        checkIn:
+          description: Check in date (YYYY-MM-DD).
+          example: 2021-10-10
+          format: date
+          type: string
+        checkOut:
+          description: Check out date (YYYY-MM-DD).
+          example: 2021-10-11
+          format: date
+          type: string
+        currency:
+          description: 3-char ISO 4217 currency code.
+          example: EUR
+          maxLength: 3
+          minLength: 3
+          type: string
+        label:
+          description: Arbitrary string for tracking and reporting.
+          type: string
+        language:
+          description:
+            Language code that will be used for translation of strings for
+            humans.
+          enum:
+            - ar
+            - bg
+            - ca
+            - cs
+            - cz
+            - da
+            - de
+            - en
+            - en-GB
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hr
+            - hu
+            - id
+            - is
+            - it
+            - iw
+            - ja
+            - ko
+            - lt
+            - lv
+            - ms
+            - nl
+            - no
+            - nb
+            - nn
+            - pl
+            - pt
+            - pt-BR
+            - ro
+            - ru
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tl
+            - tr
+            - uk
+            - vi
+            - zh
+            - zh-CN
+            - zh-TW
+            - zh-HK
+            - es-MX
+            - el
+            - bn
+            - fil
+            - fr-CA
+            - hi
+            - mr
+          example: en
+          type: string
+        place:
+          $ref: '#/components/schemas/PlaceQuery'
+        query:
+          description: Free-text query. Either query or place is required.
+          example: Amsterdam city
+          type: string
+        rooms:
+          default: '2'
+          description: Room configuration.
+          type: string
+        userCountry:
+          description: The 2-char ISO 3166 country code of a user.
+          maxLength: 2
+          minLength: 2
+          type: string
+        userDevice:
+          description: The type of the user's device.
+          enum:
+            - desktop
+            - mobile
+            - tablet
+          example: desktop
+          type: string
+        vioOnly:
+          description: Return only Vio.com location links.
+          type: boolean
+      required:
+        - language
+        - currency
+        - userDevice
+        - userCountry
+      type: object
+    LocationLinksResponse:
+      properties:
+        links:
+          description: The list of providers links.
+          items:
+            $ref: '#/components/schemas/ProviderLink'
+          type: array
+      type: object
+    NearbyPlace:
+      properties:
+        distanceKM:
+          description: Distance to the place in kilometers.
+          format: double
+          type: number
+        hotelsCnt:
+          description: Number of hotels in the place.
+          format: int64
+          type: integer
+        placeCategory:
+          description: Place category.
+          type: string
+        placeCountry:
+          description: Place Country.
+          type: string
+        placeId:
+          description: Place ID.
+          type: string
+        placeName:
+          description: Place name.
+          type: string
+        url:
+          description:
+            The URL that redirects a user to the full search results for this
+            place.
+          type: string
+      type: object
+    NearbyPlacesRequest:
+      properties:
+        anonymousId:
+          description: Unique ID identifying users. Generated automatically when omitted.
+          type: string
+        checkIn:
+          description: Check in date (YYYY-MM-DD).
+          example: 2021-10-10
+          format: date
+          type: string
+        checkOut:
+          description: Check out date (YYYY-MM-DD).
+          example: 2021-10-11
+          format: date
+          type: string
+        country:
+          description: >-
+            (Optional) The country name for the main place. If not specified,
+            the first place with the matching name will be used.
+
+            It is used to disambiguate between places with the same name in different countries.
+          example: Netherlands
+          type: string
+        currency:
+          description: 3-char ISO 4217 currency code.
+          example: EUR
+          maxLength: 3
+          minLength: 3
+          type: string
+        hits:
+          default: 10
+          description:
+            Maximum number of results to return. If omitted or non-positive,
+            the default value is 10.
+          example: 10
+          format: int64
+          maximum: 1000
+          type: integer
+        label:
+          description: Arbitrary string for tracking and reporting.
+          type: string
+        language:
+          description:
+            Language code that will be used for translation of strings for
+            humans.
+          enum:
+            - ar
+            - bg
+            - ca
+            - cs
+            - cz
+            - da
+            - de
+            - en
+            - en-GB
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hr
+            - hu
+            - id
+            - is
+            - it
+            - iw
+            - ja
+            - ko
+            - lt
+            - lv
+            - ms
+            - nl
+            - no
+            - nb
+            - nn
+            - pl
+            - pt
+            - pt-BR
+            - ro
+            - ru
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tl
+            - tr
+            - uk
+            - vi
+            - zh
+            - zh-CN
+            - zh-TW
+            - zh-HK
+            - es-MX
+            - el
+            - bn
+            - fil
+            - fr-CA
+            - hi
+            - mr
+          example: en
+          type: string
+        placeCategories:
+          description:
+            Nearby place categories. If not specified, all categories will be
+            used.
+          example: city
+          items:
+            enum:
+              - country
+              - adminDivision
+              - city
+              - townVillage
+              - subCity
+              - landmark
+              - touristRegion
+              - airport
+            type: string
+          type: array
+        placeId:
+          description:
+            (Optional) The place ID to search for. (placeName will be ignored
+            if both specified)
+          example: '47319'
+          type: string
+        placeName:
+          description:
+            The place name to search for. (One of placeName or placeId is
+            required)
+          example: Amsterdam
+          type: string
+        radius:
+          default: 50
+          description: >-
+            Maximum radius in kilometers to search for nearby places. If omitted
+            (or set to 0), the default value is 50 km.
+
+            Negative values are rejected.
+          example: 20
+          format: int64
+          maximum: 1000
+          type: integer
+        rooms:
+          default: '2'
+          description: Room configuration.
+          type: string
+        userCountry:
+          description: The 2-char ISO 3166 country code of a user.
+          maxLength: 2
+          minLength: 2
+          type: string
+        userDevice:
+          description: The type of the user's device.
+          enum:
+            - desktop
+            - mobile
+            - tablet
+          example: desktop
+          type: string
+      required:
+        - language
+        - currency
+        - userDevice
+        - userCountry
+      type: object
+    NearbyPlacesResponse:
+      properties:
+        places:
+          description: List of nearby places.
+          items:
+            $ref: '#/components/schemas/NearbyPlace'
+          type: array
+      type: object
+    Offer:
+      properties:
+        cancellationPenalties:
+          description: Offers cancellation penalties.
+          items:
+            $ref: '#/components/schemas/CancellationPenalty'
+          type: array
+        currency:
+          description:
+            The currency applied to every rate in the offer. Currency is a 3
+            letter string following ISO 4217
+          type: string
+        metadata:
+          $ref: '#/components/schemas/OfferMetadata'
+        package:
+          $ref: '#/components/schemas/Package'
+        provider:
+          $ref: '#/components/schemas/Provider'
+        rate:
+          $ref: '#/components/schemas/Rate'
+        room:
+          $ref: '#/components/schemas/Room'
+        roomName:
+          description: Room name of the offer.
+          type: string
+        url:
+          description:
+            The URL that the user should be redirected to book or view more
+            details about this offer.
+          type: string
+      required:
+        - currency
+        - rate
+        - package
+        - provider
+        - cancellationPenalties
+        - roomName
+        - url
+      type: object
+    OfferMetadata:
+      description: OfferMetadata contains additional information about the offer
+      properties:
+        signInDealAvailable:
+          description: Indicates if there is a sign-in deal available for this offer
+          type: boolean
+      type: object
+    PAPISuggestResponse:
+      properties:
+        suggestions:
+          items:
+            $ref: '#/components/schemas/Suggestion'
+          type: array
+      type: object
+    Package:
+      properties:
+        amenities:
+          description: An array of strings (enums) with the amenities of the offer.
+          items:
+            type: string
+          type: array
+        canPayLater:
+          description: Indicates if the user can be charged later for the offer.
+          type: boolean
+      required:
+        - amenities
+        - canPayLater
+      type: object
+    Place:
+      properties:
+        address:
+          description: Place address from the requested place to its country.
+          example: London, England, United Kingdom
+          type: string
+        id:
+          description: Place ID
+          type: string
+        name:
+          description: Place name.
+          type: string
+        vioUrl:
+          description: URL of the place on Vio website.
+          type: string
+      required:
+        - id
+        - name
+        - address
+        - vioUrl
+      type: object
+    PlaceQuery:
+      properties:
+        country:
+          description: >-
+            Country of place. Use this parameter to refine the search
+
+            if there are places (e.g. cities) with the same names in another country.
+          type: string
+        name:
+          description: Place name to query.
+          type: string
+      required:
+        - name
+      type: object
+    PollSearchResponse:
+      properties:
+        availableHotelsCount:
+          description: >-
+            An approximate count of available hotels. For popular places, it's
+            close
+
+            to the real number of available hotels. For unpopular places it could be much less.
+
+            Available for place searches if "availableHotelsCount" value is specified in the "attributes"
+
+            request parameter.
+          format: int64
+          type: integer
+        completed:
+          description: |-
+            If true then the polling session is completed
+            and no more new offers are available.
+            Keep sending requests to the server until this value is true.
+          type: boolean
+        failedToMap:
+          description: The list of hotels that the API failed to map to a Vio.com hotel.
+          items:
+            type: string
+          type: array
+        hotels:
+          description: The List of hotels.
+          items:
+            $ref: '#/components/schemas/Hotel'
+          type: array
+        place:
+          $ref: '#/components/schemas/Place'
+        sessionId:
+          description: >-
+            Unique ID of the polling session.
+
+            Put it to the "sessionId" URL query parameter of every subsequent request
+
+            in the polling sesson.
+          type: string
+        stay:
+          $ref: '#/components/schemas/Stay'
+      required:
+        - hotels
+        - sessionId
+        - completed
+      type: object
+    PriceFilter:
+      properties:
+        max:
+          description: Maximum offer price.
+          format: int64
+          type: integer
+        min:
+          description: Minimum offer price.
+          format: int64
+          type: integer
+      type: object
+    Provider:
+      properties:
+        iconUrl:
+          description: Provider icon url.
+          type: string
+        logoUrl:
+          description: Provider logo url.
+          type: string
+        name:
+          description: Provider name in english.
+          type: string
+      required:
+        - name
+        - logoUrl
+      type: object
+    ProviderLink:
+      properties:
+        logo:
+          description: Provider's logo.
+          type: string
+        name:
+          description: Provider's name.
+          type: string
+        url:
+          description: Book url.
+          type: string
+      type: object
+    Rate:
+      properties:
+        base:
+          description: The rate exclusive of any taxes and hotel fees.
+          format: double
+          type: number
+        hotelFees:
+          description:
+            The sum of all mandatory taxes and fees that the customer will need
+            to pay at the hotel. For example, a resort fee.
+          format: double
+          type: number
+        taxes:
+          description: Value added tax (VAT).
+          format: double
+          type: number
+      required:
+        - base
+        - taxes
+        - hotelFees
+      type: object
+    Room:
+      properties:
+        amenities:
+          description: Room amenities in available languages.
+          items:
+            type: string
+          type: array
+        images:
+          description: Room images
+          items:
+            type: string
+          type: array
+        layout:
+          $ref: '#/components/schemas/Layout'
+        name:
+          description: Room name.
+          type: string
+        type:
+          description: Room type
+          type: string
+      required:
+        - name
+      type: object
+    SearchPageLinkParams:
+      properties:
+        label:
+          description: Arbitrary string for tracking and reporting.
+          type: string
+        urls:
+          description: The list of search page URLs. Each item must be a valid URI.
+          items:
+            type: string
+          type: array
+      type: object
+    SearchQuery:
+      properties:
+        hotelIds:
+          description: The list of hotel IDs to query.
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        hotelIdsProvider:
+          description: |-
+            used with the hotelIds query to specify the provider code of
+            the hotels to query/map.
+          type: string
+        hotelNames:
+          $ref: '#/components/schemas/HotelNamesQuery'
+        iataCode:
+          description: IATA code of an airport.
+          type: string
+        lat:
+          description: Latitude in degrees
+          format: double
+          type: number
+        lon:
+          description: Longitude in degrees
+          format: double
+          type: number
+        place:
+          $ref: '#/components/schemas/PlaceQuery'
+        placeId:
+          description: Place ID to query.
+          type: string
+        precision:
+          description: >-
+            PrecisionRanges specifies the precision for geographic search
+            results, defined
+
+            as a string in "from-value" format, where each pair influences how results are
+
+            grouped by distance for ranking purposes.
+
+
+            Each pair in PrecisionRanges is written as "from-value", where `from` is the
+
+            starting distance (in meters) and `value` defines the precision for that range.
+
+            For example, "0-100" will group all results starting from 0 meters at a precision
+
+            of 100 meters, meaning all results within a 0-99 meter radius are ranked equally.
+
+
+            Multiple ranges can be specified as comma-separated pairs, such as
+
+            "0-25,1000-2000". In this example, results from 0–999 m have a precision of 25 m,
+
+            and results from >= 1000 m are grouped with a precision of 2000 m.
+
+
+            This follows Algolia's aroundPrecision semantics for range objects.
+
+
+            This format allows flexible, non-linear precision grouping to optimize geo-ranking
+
+            by reducing overly precise calculations for distant results.
+          type: string
+        radius:
+          description: radius in meters
+          format: int64
+          type: integer
+      type: object
+    SearchRequest:
+      properties:
+        anonymousId:
+          description: Unique ID identifying users.
+          type: string
+        attributes:
+          description: The list of extra attributes to include in a response.
+          enum:
+            - availableHotelsCount
+          items:
+            type: string
+          type: array
+        checkIn:
+          description:
+            Check in date (YYYY-MM-DD). If specified, must be within 0 and 365
+            days from today.
+          example: 2021-10-10
+          format: date
+          type: string
+        checkOut:
+          description:
+            Check out date (YYYY-MM-DD). If specified, must be between 1 and 31
+            days after check-in.
+          example: 2021-10-11
+          format: date
+          type: string
+        currency:
+          default: EUR
+          description: 3-char ISO 4217 currency code.
+          example: EUR
+          maxLength: 3
+          minLength: 3
+          type: string
+        filters:
+          $ref: '#/components/schemas/Filters'
+        hotelAttributes:
+          description: The list of extra hotel attributes to include in a response.
+          enum:
+            - details
+          items:
+            type: string
+          type: array
+        label:
+          description: Arbitrary string for tracking and reporting.
+          type: string
+        language:
+          description:
+            Language code that will be used for translation of strings for
+            humans.
+          enum:
+            - ar
+            - bg
+            - ca
+            - cs
+            - cz
+            - da
+            - de
+            - en
+            - en-GB
+            - es
+            - et
+            - fi
+            - fr
+            - he
+            - hr
+            - hu
+            - id
+            - is
+            - it
+            - iw
+            - ja
+            - ko
+            - lt
+            - lv
+            - ms
+            - nl
+            - no
+            - nb
+            - nn
+            - pl
+            - pt
+            - pt-BR
+            - ro
+            - ru
+            - sk
+            - sl
+            - sr
+            - sv
+            - th
+            - tl
+            - tr
+            - uk
+            - vi
+            - zh
+            - zh-CN
+            - zh-TW
+            - zh-HK
+            - es-MX
+            - el
+            - bn
+            - fil
+            - fr-CA
+            - hi
+            - mr
+          example: en
+          type: string
+        optimizeRooms:
+          description: >-
+            When enabled, the most cost-effective room combinations will be
+            searched for a given occupancy
+
+            (`rooms` field). For example, for 6 people, it will compare offers across different configurations
+
+            like one 6-person room ("6"), two 3-person rooms ("3|3"), or three 2-person rooms ("2|2|2"),
+
+            returning only the best option per hotel. This feature is not enabled by default, reach the support
+
+            if you are going to use it.
+          type: boolean
+        pageSize:
+          default: 20
+          description: Max number of hotels in a response.
+          format: int64
+          maximum: 20
+          minimum: 1
+          type: integer
+        query:
+          $ref: '#/components/schemas/SearchQuery'
+        rooms:
+          default: '2'
+          description: Room configuration.
+          type: string
+        sortField:
+          description: Sort criteria.
+          enum:
+            - price
+            - guestRating
+          example: price
+          type: string
+        sortOrder:
+          default: ascending
+          description: Sort order.
+          enum:
+            - ascending
+            - descending
+          example: ascending
+          type: string
+        timeout:
+          description: >-
+            Maximum time in seconds to process a request. Setting this timeout
+            allows to receive a response without
+
+            waiting for offers from slow providers, but it also may lead to an incomplete or empty list of offers in a response.
+          format: int64
+          type: integer
+        userCountry:
+          description:
+            The 2-char ISO 3166 country code of a user. If not specified then
+            API determines it based on the caller's IP address.
+          maxLength: 2
+          minLength: 2
+          type: string
+        userDevice:
+          description:
+            The type of the user's device. If not specified then API determines
+            it based on the caller's User-Agent header.
+          enum:
+            - desktop
+            - mobile
+            - tablet
+          example: desktop
+          type: string
+      required:
+        - query
+        - language
+        - currency
+        - userDevice
+        - userCountry
+      type: object
+    SearchResponse:
+      properties:
+        availableHotelsCount:
+          description: >-
+            An approximate count of available hotels. For popular places, it's
+            close
+
+            to the real number of available hotels. For unpopular places it could be much less.
+
+            Available for place searches if "availableHotelsCount" value is specified in the "attributes"
+
+            request parameter.
+          format: int64
+          type: integer
+        failedToMap:
+          description: The list of hotels that the API failed to map to a Vio.com hotel.
+          items:
+            type: string
+          type: array
+        hotels:
+          description: The List of hotels.
+          items:
+            $ref: '#/components/schemas/Hotel'
+          type: array
+        place:
+          $ref: '#/components/schemas/Place'
+        stay:
+          $ref: '#/components/schemas/Stay'
+      required:
+        - hotels
+      type: object
+    Stay:
+      properties:
+        checkIn:
+          description: Check in date (YYYY-MM-DD) which was used in search.
+          example: 2021-10-10
+          format: date
+          type: string
+        checkOut:
+          description: Check out date (YYYY-MM-DD) which was used in search.
+          example: 2021-10-11
+          format: date
+          type: string
+      type: object
+    Suggestion:
+      properties:
+        highlightValue:
+          description: Markup text with occurrences highlighted.
+          type: string
+        objectID:
+          description: Object ID.
+          type: string
+        objectId:
+          description: Object ID (legacy casing).
+          type: string
+        objectType:
+          description: Object type.
+          enum:
+            - place
+            - hotel
+            - nearby
+          type: string
+        placeDisplayName:
+          description: Address display name.
+          type: string
+        placeTypeName:
+          description: Suggested place type.
+          enum:
+            - property
+            - country
+            - city
+            - airport
+            - station
+            - area
+          type: string
+        value:
+          description: Full name of the suggestion.
+          type: string
+      required:
+        - objectID
+        - objectId
+        - objectType
+        - placeDisplayName
+        - placeTypeName
+        - value
+        - highlightValue
+      type: object
